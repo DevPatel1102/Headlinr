@@ -7,7 +7,7 @@ var lightTheme = ThemeData(
       fillColor: lightBgColor,
       filled: true,
       enabledBorder: InputBorder.none,
-      prefixIconColor: lightLableColor,
+      prefixIconColor: lightLabelColor,
       labelStyle: TextStyle(
         fontFamily: "Poppins",
         fontSize: 15,
@@ -27,7 +27,7 @@ var lightTheme = ThemeData(
       onBackground: lightFontColor,
       primaryContainer: lightDivColor,
       onPrimaryContainer: lightFontColor,
-      secondaryContainer: lightLableColor,
+      secondaryContainer: lightLabelColor,
       primary: lightPrimaryColor,
     ),
     textTheme: const TextTheme(
@@ -70,7 +70,7 @@ var lightTheme = ThemeData(
       labelSmall: TextStyle(
         fontFamily: "Poppins",
         fontSize: 13,
-        color: lightLableColor,
+        color: lightLabelColor,
         fontWeight: FontWeight.w300,
       ),
     ));
@@ -96,14 +96,14 @@ var darkTheme = ThemeData(
       onBackground: darkFontColor,
       primaryContainer: darkDivColor,
       onPrimaryContainer: darkFontColor,
-      secondaryContainer: darkLableColor,
+      secondaryContainer: darkLabelColor,
       primary: darkPrimaryColor,
     ),
     inputDecorationTheme: const InputDecorationTheme(
       fillColor: darkBgColor,
       filled: true,
       enabledBorder: InputBorder.none,
-      prefixIconColor: darkLableColor,
+      prefixIconColor: darkLabelColor,
       labelStyle: TextStyle(
         fontFamily: "Poppins",
         fontSize: 15,
@@ -157,7 +157,7 @@ var darkTheme = ThemeData(
       labelSmall: TextStyle(
         fontFamily: "Poppins",
         fontSize: 13,
-        color: darkLableColor,
+        color: darkLabelColor,
         fontWeight: FontWeight.w300,
       ),
     ));
