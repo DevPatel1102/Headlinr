@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:news_app/Components/NavigationBar.dart';
+import 'package:news_app/Controllers/NewsController.dart';
 import 'package:news_app/Pages/HomePage/widgets/NewsTile.dart';
 import 'package:news_app/Pages/HomePage/widgets/TrendingCard.dart';
+import 'package:news_app/Pages/NewsDetails/news_details.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,19 +16,54 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    NewsController newsController = Get.put(NewsController());
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Headlinr",
-          style: Theme.of(context).textTheme.headlineLarge,
-        ),
-      ),
-      floatingActionButton: MyBottomNav(),
+      // appBar: AppBar(
+      //   title: Text(
+      //     "Headlinr",
+      //     style: Theme.of(context).textTheme.headlineLarge,
+      //   ),
+      // ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(height: 40),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: Icon(Icons.dashboard),
+                  ),
+                  Text(
+                    "Headlinr",
+                    style: Theme.of(context).textTheme.headlineLarge,
+                  ),
+                  InkWell(
+                    onTap: () {
+
+                    },
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: Icon(Icons.person),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 40),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -40,27 +78,26 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               SizedBox(height: 20),
-              const SingleChildScrollView(
+              SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    TrendingCard(
-                      imageUrl:
-                          "https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmV3c3xlbnwwfHwwfHx8MA%3D%3D",
-                      tag: "Trending no 1",
-                      time: "2 Day Ago",
-                      title: "Save Water Save Life",
-                      author: "Nitish Kumar",
-                    ),
-                    TrendingCard(
-                      imageUrl:
-                          "https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmV3c3xlbnwwfHwwfHx8MA%3D%3D",
-                      tag: "Trending no 1",
-                      time: "2 Day Ago",
-                      title: "Save Water Save Life",
-                      author: "Nitish Kumar",
-                    ),
-                  ],
+                child: Obx(
+                  () => Row(
+                    children:
+                      newsController.trendingNewsList.map(
+                        (e) => TrendingCard(
+                          imageUrl: e.urlToImage ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
+                          tag: "Trending no 1",
+                          time: e.publishedAt  ?? "No Date",
+                          title: e.title ?? "No Title",
+                          author: e.author ?? "Unknown",
+                          onTap: () {
+                            Get.to(()=>NewsDetailsPage(
+                              newsModel: e,
+                            ));
+                          },
+                        ),
+                      ).toList(),
+                  ),
                 ),
               ),
               SizedBox(height: 20),
@@ -78,30 +115,18 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               SizedBox(height: 20),
-              Column(
-                children: [
-                  NewsTile(
-                    imgUrl:
-                        "https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmV3c3xlbnwwfHwwfHx8MA%3D%3D",
-                    author: "Author",
-                    title: "Save Water Save Life",
-                    time: "2 Day ago",
-                  ),
-                  NewsTile(
-                    imgUrl:
-                        "https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmV3c3xlbnwwfHwwfHx8MA%3D%3D",
-                    author: "Author",
-                    title: "Save Water Save Life",
-                    time: "2 Day ago",
-                  ),
-                  NewsTile(
-                    imgUrl:
-                        "https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmV3c3xlbnwwfHwwfHx8MA%3D%3D",
-                    author: "Author",
-                    title: "Save Water Save Life",
-                    time: "2 Day ago",
-                  ),
-                ],
+              Obx(() =>Column(
+                  children: newsController.newsForYouList.map((e) =>
+                      NewsTile(
+                        imgUrl: e.urlToImage ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
+                        author: e.author ?? "Unknown",
+                        title: e.title ?? "No Title",
+                        time: e.publishedAt ?? "No Date",
+                        onTap: (){
+                          Get.to(()=>NewsDetailsPage(newsModel: e,));
+                        },
+                      ),).toList()
+                ),
               ),
             ],
           ),
