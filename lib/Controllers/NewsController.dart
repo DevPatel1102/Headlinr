@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../Model/NewsModel.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class NewsController extends GetxController{
 
@@ -17,7 +18,7 @@ class NewsController extends GetxController{
   }
 
   Future<void> getTrendingNews() async{
-    var baseURL = "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=1df23bf25af94bbbbe9f639714d48ca0";
+    var baseURL = "${dotenv.env['TRENDING_URL']}&apiKey=${dotenv.env['NEWS_API_KEY']}";
 
     try{
       var response = await http.get(Uri.parse(baseURL));
@@ -39,7 +40,7 @@ class NewsController extends GetxController{
   }
 
   Future<void> getNewsForYou() async{
-    var baseURL = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=1df23bf25af94bbbbe9f639714d48ca0";
+    var baseURL = "${dotenv.env['NEWS_FOR_YOU_URL']}&apiKey=${dotenv.env['NEWS_API_KEY']}";
 
     try{
       var response = await http.get(Uri.parse(baseURL));

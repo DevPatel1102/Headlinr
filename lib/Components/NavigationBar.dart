@@ -19,6 +19,14 @@ class MyBottomNav extends StatelessWidget {
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primaryContainer,
             borderRadius: BorderRadius.circular(100),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: (0.2)), // subtle shadow color
+                blurRadius: 12, // soft blur
+                spreadRadius: 1,
+                offset: Offset(0, 6), // vertical offset to look lifted
+              ),
+            ],
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,7 +52,7 @@ class MyBottomNav extends StatelessWidget {
                       Icons.home,
                       size: 25,
                       color: controller.index.value == 0
-                          ? Theme.of(context).colorScheme.onSurface
+                          ? Colors.white
                           : Theme.of(context).colorScheme.secondaryContainer,
                     ),
                   ),
@@ -71,7 +79,7 @@ class MyBottomNav extends StatelessWidget {
                       Icons.book,
                       size: 25,
                       color: controller.index.value == 1
-                          ? Theme.of(context).colorScheme.onSurface
+                          ? Colors.white
                           : Theme.of(context).colorScheme.secondaryContainer,
                     ),
                   ),
@@ -98,7 +106,7 @@ class MyBottomNav extends StatelessWidget {
                       Icons.settings,
                       size: 25,
                       color: controller.index.value == 2
-                          ? Theme.of(context).colorScheme.onSurface
+                          ? Colors.white
                           : Theme.of(context).colorScheme.secondaryContainer,
                     ),
                   ),
