@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:news_app/Model/NewsModel.dart';
+import 'package:news_app/Controllers/news_controller.dart';
+import 'package:news_app/Model/news_model.dart';
+import 'package:lottie/lottie.dart';
 
 class NewsDetailsPage extends StatelessWidget {
-
   final NewsModel newsModel;
 
-  const NewsDetailsPage({
-    super.key,
-    required this.newsModel,
-  });
+  const NewsDetailsPage({super.key, required this.newsModel});
 
   @override
   Widget build(BuildContext context) {
+    NewsController newsController = Get.put(NewsController());
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -23,7 +23,8 @@ class NewsDetailsPage extends StatelessWidget {
                 Row(
                   children: [
                     InkWell(
-                      onTap: (){
+                      onTap: () {
+                        newsController.stop();
                         Get.back();
                       },
                       child: Container(
@@ -37,12 +38,12 @@ class NewsDetailsPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 30,),
+                SizedBox(height: 30),
                 Container(
                   height: 280,
                   decoration: BoxDecoration(
                     color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(20)
+                    borderRadius: BorderRadius.circular(20),
                   ),
                   child: Row(
                     children: [
@@ -50,32 +51,30 @@ class NewsDetailsPage extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
                           child: Image.network(
-                            newsModel.urlToImage ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
+                            newsModel.urlToImage ??
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
                             fit: BoxFit.cover,
-                          )
-                        )
+                          ),
+                        ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(height: 20),
                 Text(
-                    newsModel.title ?? "No Title",
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold
-                    ),
+                  newsModel.title ?? "No Title",
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(height: 10),
                 Row(
                   children: [
                     Text(
-                      newsModel.publishedAt  ?? "No Date",
+                      newsModel.publishedAt ?? "No Date",
                       style: Theme.of(context).textTheme.labelSmall,
-                    )
+                    ),
                   ],
                 ),
-                SizedBox(height: 10,),
+                SizedBox(height: 10),
                 Row(
                   children: [
                     CircleAvatar(
@@ -85,29 +84,92 @@ class NewsDetailsPage extends StatelessWidget {
                         newsModel.author?[0] ?? "U",
                         style: TextStyle(
                           fontSize: 15,
-                          fontWeight: FontWeight.bold
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    SizedBox(width: 10,),
+                    SizedBox(width: 10),
                     Text(
                       newsModel.author ?? "Unknown",
                       style: TextStyle(
-                          fontSize: 18,
-                        color: Theme.of(context).colorScheme.secondaryContainer
+                        fontSize: 18,
+                        color: Theme.of(context).colorScheme.secondaryContainer,
                       ),
-                    )
+                    ),
                   ],
                 ),
-            
-                SizedBox(height: 20,),
+                const SizedBox(height: 20),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 100),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Obx(() => InkWell(
+                              onTap: () {
+                                newsController.isSpeaking.value
+                                    ? newsController.stop()
+                                    : newsController.speak(
+                                  newsModel.description ?? "No Description",
+                                );
+                              },
+                              borderRadius: BorderRadius.circular(40),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .surfaceContainerHighest
+                                      .withOpacity(0.2),
+                                ),
+                                child: Icon(
+                                  newsController.isSpeaking.value
+                                      ? Icons.stop_rounded
+                                      : Icons.play_arrow_rounded,
+                                  size: 35,
+                                  color: Theme.of(context).colorScheme.onPrimaryContainer,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Obx(
+                                () => Lottie.asset(
+                              'assets/Animations/textToSpeech.json',
+                              height: 80,
+                              // width: 100,
+                              fit: BoxFit.contain,
+                              animate: newsController.isSpeaking.value,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Obx(
+                            () => LinearProgressIndicator(
+                          value: newsController.progress.value,
+                          minHeight: 5,
+                          backgroundColor: Colors.grey[300],
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+                      SizedBox(height: 10,)
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
                 Text(
                   newsModel.description ?? "No Description",
                   style: TextStyle(
-                      fontSize: 18,
-                      color: Theme.of(context).colorScheme.secondaryContainer
+                    fontSize: 18,
+                    color: Theme.of(context).colorScheme.secondaryContainer,
                   ),
-                )
+                ),
               ],
             ),
           ),

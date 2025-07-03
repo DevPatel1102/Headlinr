@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/Components/NavigationBar.dart';
-import 'package:news_app/Controllers/BottomNavigationController.dart';
+import 'package:news_app/Components/navigation_bar.dart';
+import 'package:news_app/Controllers/bottom_navigation_controller.dart';
 import 'package:news_app/Pages/HomePage/home_page.dart';
 import 'package:get/get.dart';
 

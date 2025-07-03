@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/Controllers/BottomNavigationController.dart';
+import 'package:news_app/Controllers/bottom_navigation_controller.dart';
 import 'package:get/get.dart';
 
 class MyBottomNav extends StatelessWidget {
