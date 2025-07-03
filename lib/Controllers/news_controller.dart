@@ -138,23 +138,11 @@ class NewsController extends GetxController{
 
     await flutterTts.setLanguage("en-US");
     await flutterTts.setPitch(1.0);
-    await flutterTts.setSpeechRate(0.5); // ✅ Natural speed
-
-    progress.value = 0.0;
-
-    // ✅ Estimate duration based on speechRate (0.5 ~ 2.5 words per second)
-    double wordsPerSecond = 3.2; // Matches well with 0.5 speech rate
-    double estimatedDuration = text.split(' ').length / wordsPerSecond;
-
-    _timer?.cancel();
-    _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
-      progress.value += 0.1 / estimatedDuration;
-      if (progress.value >= 1.0) {
-        stop();
-      }
-    });
-
+    await flutterTts.setSpeechRate(0.4); 
+    await flutterTts.awaitSpeakCompletion(true);
     await flutterTts.speak(text);
+    
+    isSpeaking.value = false;
   }
 
 

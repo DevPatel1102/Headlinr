@@ -101,66 +101,51 @@ class NewsDetailsPage extends StatelessWidget {
                 const SizedBox(height: 20),
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 100),
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.primaryContainer,
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Obx(() => InkWell(
-                              onTap: () {
+                  child:Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Obx(() => InkWell(
+                            onTap: () {
+                              newsController.isSpeaking.value
+                                  ? newsController.stop()
+                                  : newsController.speak(
+                                newsModel.description ?? "No Description",
+                              );
+                            },
+                            borderRadius: BorderRadius.circular(40),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .surfaceContainerHighest
+                                    .withOpacity(0.2),
+                              ),
+                              child: Icon(
                                 newsController.isSpeaking.value
-                                    ? newsController.stop()
-                                    : newsController.speak(
-                                  newsModel.description ?? "No Description",
-                                );
-                              },
-                              borderRadius: BorderRadius.circular(40),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .surfaceContainerHighest
-                                      .withOpacity(0.2),
-                                ),
-                                child: Icon(
-                                  newsController.isSpeaking.value
-                                      ? Icons.stop_rounded
-                                      : Icons.play_arrow_rounded,
-                                  size: 35,
-                                  color: Theme.of(context).colorScheme.onPrimaryContainer,
-                                ),
+                                    ? Icons.stop_rounded
+                                    : Icons.play_arrow_rounded,
+                                size: 35,
+                                color: Theme.of(context).colorScheme.onPrimaryContainer,
                               ),
                             ),
                           ),
-                          Obx(
-                                () => Lottie.asset(
-                              'assets/Animations/textToSpeech.json',
-                              height: 80,
-                              // width: 100,
-                              fit: BoxFit.contain,
-                              animate: newsController.isSpeaking.value,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Obx(
-                            () => LinearProgressIndicator(
-                          value: newsController.progress.value,
-                          minHeight: 5,
-                          backgroundColor: Colors.grey[300],
-                          color: Theme.of(context).colorScheme.primary,
                         ),
-                      ),
-                      SizedBox(height: 10,)
-                    ],
-                  ),
+                        Obx(
+                              () => Lottie.asset(
+                            'assets/Animations/textToSpeech.json',
+                            height: 80,
+                            // width: 100,
+                            fit: BoxFit.contain,
+                            animate: newsController.isSpeaking.value,
+                          ),
+                        ),
+                      ],
+                    ),
                 ),
                 SizedBox(height: 20),
                 Text(

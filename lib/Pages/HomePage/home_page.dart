@@ -27,12 +27,12 @@ class _HomePageState extends State<HomePage> {
       //     style: Theme.of(context).textTheme.headlineLarge,
       //   ),
       // ),
-      body: Padding(
+      body: SafeArea(
+        child:Padding(
         padding: const EdgeInsets.all(10.0),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 40),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -238,6 +238,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
+      ),
       ),
     );
   }
