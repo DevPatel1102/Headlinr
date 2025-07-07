@@ -133,6 +133,35 @@ class NewsController extends GetxController{
     // print(trendingNewsList);
   }
 
+  Future<void> searchNews(String search) async {
+    var baseURL = "${dotenv.env['SEARCH_URL']}$search&apiKey=${dotenv.env['NEWS_API_KEY']}";
+    isNewsForYouLoading.value = true;
+
+    try {
+      var response = await http.get(Uri.parse(baseURL));
+      // print(response);
+      if (response.statusCode == 200) {
+        // print(response.body);
+        var body = jsonDecode(response.body);
+        var articles = body["articles"];
+        newsForYouList.clear();
+        int i = 0;
+        for (var news in articles) {
+          i++;
+          newsForYouList.add(NewsModel.fromJson(news));
+          if (i == 10) {
+            break;
+          }
+        }
+      } else {
+        print("Something went wrong in search");
+      }
+    } catch (ex) {
+      // print(ex);
+    }
+    isNewsForYouLoading.value = false;
+  }
+
   Future<void> speak(String text) async {
     isSpeaking.value = true;
 

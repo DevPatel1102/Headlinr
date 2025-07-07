@@ -22,22 +22,24 @@ class ArticlePage extends StatelessWidget {
               children: [
                 SearchBarWidget(),
                 SizedBox(height: 20),
-                Column(
-                  children: newsController.newsForYouList
-                      .map(
-                        (e) => NewsTile(
-                          onTap: () {
-                            Get.to(() => NewsDetailsPage(newsModel: e));
-                          },
-                          imgUrl:
-                              e.urlToImage ??
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
-                          author: e.author ?? "Unknown",
-                          title: e.title ?? "No Title",
-                          time: e.publishedAt ?? "No Time",
-                        ),
-                      )
-                      .toList(),
+                Obx(
+                  () => Column(
+                    children: newsController.newsForYouList
+                        .map(
+                          (e) => NewsTile(
+                            onTap: () {
+                              Get.to(() => NewsDetailsPage(newsModel: e));
+                            },
+                            imgUrl:
+                                e.urlToImage ??
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
+                            author: e.author ?? "Unknown",
+                            title: e.title ?? "No Title",
+                            time: e.publishedAt ?? "No Time",
+                          ),
+                        )
+                        .toList(),
+                  ),
                 ),
               ],
             ),

@@ -41,6 +41,12 @@ class NewsTile extends StatelessWidget {
                   child: Image.network(
                     imgUrl,
                     fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Image.network(
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
+                        fit: BoxFit.cover,
+                      );
+                    },
                   ),
                 )
             ),
