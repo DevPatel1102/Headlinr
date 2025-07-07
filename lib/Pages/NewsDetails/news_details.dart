@@ -11,7 +11,7 @@ class NewsDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    NewsController newsController = Get.put(NewsController());
+    final NewsController newsController = Get.put(NewsController());
 
     return Scaffold(
       body: SafeArea(

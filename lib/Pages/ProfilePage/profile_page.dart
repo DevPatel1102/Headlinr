@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_app/Pages/ProfileSettingsPage/profile_settings_page.dart';
@@ -27,11 +29,48 @@ class ProfilePage extends StatelessWidget {
           Center(
             child: Column(
               children: [
-                CircleAvatar(
-                  radius: 40,
-                  backgroundColor: theme.colorScheme.primary,
-                  child: Icon(Icons.person, size: 40, color: theme.colorScheme.onPrimaryContainer),
-                ),
+                Obx(() {
+                  final imagePath = controller.imagePath.value;
+
+                  return Stack(
+                    alignment: Alignment.bottomRight,
+                    children: [
+                      CircleAvatar(
+                        radius: 50,
+                        backgroundColor: theme.colorScheme.primary,
+                        backgroundImage: imagePath.isNotEmpty ? FileImage(File(imagePath)) : null,
+                        child: imagePath.isEmpty
+                            ? Icon(Icons.person, size: 50, color: theme.colorScheme.onPrimaryContainer)
+                            : null,
+                      ),
+                      Positioned(
+                        bottom: 4,
+                        right: 4,
+                        child: GestureDetector(
+                          onTap: controller.pickImage,
+                          child: Container(
+                            padding: const EdgeInsets.all(6),
+                            decoration: BoxDecoration(
+                              color: theme.colorScheme.primary,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.15),
+                                  blurRadius: 4,
+                                ),
+                              ],
+                            ),
+                            child: const Icon(
+                              Icons.edit,
+                              size: 16,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                }),
                 const SizedBox(height: 10),
                 Obx(() => Text(
                   controller.name.value,

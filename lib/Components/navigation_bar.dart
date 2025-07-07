@@ -17,7 +17,7 @@ class MyBottomNav extends StatelessWidget {
           width: 200,
           height: 60,
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.primaryContainer,
+            color: Theme.of(context).colorScheme.tertiary,
             borderRadius: BorderRadius.circular(100),
             boxShadow: [
               BoxShadow(
