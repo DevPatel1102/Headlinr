@@ -7,6 +7,7 @@ import 'package:news_app/Controllers/news_controller.dart';
 import 'package:news_app/Pages/HomePage/widgets/news_tile.dart';
 import 'package:news_app/Pages/HomePage/widgets/trending_card.dart';
 import 'package:news_app/Pages/NewsDetails/news_details.dart';
+import 'package:news_app/Pages/ProfilePage/profile_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -50,7 +51,9 @@ class _HomePageState extends State<HomePage> {
                     style: Theme.of(context).textTheme.headlineLarge,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => ProfilePage());
+                    },
                     child: Container(
                       width: 50,
                       height: 50,
