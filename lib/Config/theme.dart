@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/Config/Colors.dart';
+import 'package:news_app/Config/colors.dart';
 
 var lightTheme = ThemeData(
     useMaterial3: true,
@@ -23,8 +23,8 @@ var lightTheme = ThemeData(
     ),
     colorScheme: const ColorScheme.light(
       brightness: Brightness.light,
-      background: lightBgColor,
-      onBackground: lightFontColor,
+      surface: lightBgColor,
+      onSurface: lightFontColor,
       primaryContainer: lightDivColor,
       tertiary: lightBottomNavColor,
       onPrimaryContainer: lightFontColor,
@@ -93,8 +93,8 @@ var darkTheme = ThemeData(
     ),
     colorScheme: const ColorScheme.dark(
       brightness: Brightness.dark,
-      background: darkBgColor,
-      onBackground: darkFontColor,
+      surface: darkBgColor,
+      onSurface: darkFontColor,
       primaryContainer: darkDivColor,
       tertiary: darkBottomNavColor,
       onPrimaryContainer: darkFontColor,

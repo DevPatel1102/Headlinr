@@ -123,7 +123,7 @@ class NewsDetailsPage extends StatelessWidget {
                                 color: Theme.of(context)
                                     .colorScheme
                                     .surfaceContainerHighest
-                                    .withOpacity(0.2),
+                                    ..withValues(alpha: (0.2)),
                               ),
                               child: Icon(
                                 newsController.isSpeaking.value

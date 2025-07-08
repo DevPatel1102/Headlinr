@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:news_app/Config/Colors.dart';
+import 'package:news_app/Config/colors.dart';
 
 successMessage(String message) => Fluttertoast.showToast(
   msg: message,

@@ -56,7 +56,7 @@ class NewsController extends GetxController{
         // print("Something went wrong in Trending News");
       }
     }catch(error){
-      print(error.toString());
+      // print(error.toString());
     }
     isTrendingLoading.value = false;
     // print(trendingNewsList);
@@ -81,7 +81,7 @@ class NewsController extends GetxController{
         // print("Something went wrong in NewsSection");
       }
     }catch(error){
-      print(error.toString());
+      // print(error.toString());
     }
     isNewsForYouLoading.value = false;
     // print(trendingNewsList);
@@ -106,7 +106,7 @@ class NewsController extends GetxController{
         // print("Something went wrong in Apple News");
       }
     }catch(error){
-      print(error.toString());
+      // print(error.toString());
     }
     isAppleNewsLoading.value = false;
     // print(trendingNewsList);
@@ -130,7 +130,7 @@ class NewsController extends GetxController{
         // print("Something went wrong in Tesla News");
       }
     }catch(error){
-      print(error.toString());
+      // print(error.toString());
     }
     isTeslaNewsLoading.value = false;
     // print(trendingNewsList);
@@ -157,7 +157,7 @@ class NewsController extends GetxController{
           }
         }
       } else {
-        print("Something went wrong in search");
+        // print("Something went wrong in search");
       }
     } catch (ex) {
       // print(ex);
