@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:flutter/material.dart';
 
 class ProfileController extends GetxController {
   var name = "Guest".obs;
@@ -28,9 +30,37 @@ class ProfileController extends GetxController {
   }
   Future<void> pickImage() async {
     final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+
     if (pickedFile != null) {
-      imagePath.value = pickedFile.path;
-      _storage.write('user_image', pickedFile.path);
+      final croppedFile = await ImageCropper().cropImage(
+        sourcePath: pickedFile.path,
+        uiSettings: [
+          AndroidUiSettings(
+            toolbarTitle: 'Crop Image',
+            toolbarColor: Colors.deepOrange,
+            toolbarWidgetColor: Colors.white,
+            initAspectRatio: CropAspectRatioPreset.original,
+            lockAspectRatio: false,
+            showCropGrid: true,
+            cropFrameColor: Colors.white,
+            // 👇 aspectRatioPresets moved here
+            aspectRatioPresets: [
+              CropAspectRatioPreset.square,
+              CropAspectRatioPreset.original,
+              CropAspectRatioPreset.ratio4x3,
+            ],
+          ),
+          IOSUiSettings(
+            title: 'Crop Image',
+            aspectRatioLockEnabled: false,
+          ),
+        ],
+      );
+
+      if (croppedFile != null) {
+        imagePath.value = croppedFile.path;
+        _storage.write('user_image', croppedFile.path);
+      }
     }
   }
 }
