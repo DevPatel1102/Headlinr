@@ -73,6 +73,15 @@ To build Headlinr from source and install all dependencies:
 
 ```sh
 ❯ git clone https://github.com/DevPatel1102/Headlinr
+
+```
+#### 2. Change the directory
+
+```sh
 ❯ cd Headlinr
-❯ pub get
+
+```
+#### 2. Get the Dependencies
+
+```sh
 ❯ pub get
