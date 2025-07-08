@@ -26,7 +26,7 @@ class SearchBarWidget extends StatelessWidget {
                   border: InputBorder.none
               )
           )),
-          Obx(() => newsController.isNewsForYouLoading.value
+          Obx(() => newsController.isSearchNewsLoading.value
               ? Container(
             width: 50,
             height: 50,

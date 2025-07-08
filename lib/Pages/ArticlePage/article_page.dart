@@ -11,39 +11,35 @@ class ArticlePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final NewsController newsController = Get.put(NewsController());
-
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              children: [
-                SearchBarWidget(),
-                SizedBox(height: 20),
-                Obx(
-                  () => Column(
-                    children: newsController.newsForYouList
-                        .map(
-                          (e) => NewsTile(
-                            onTap: () {
-                              Get.to(() => NewsDetailsPage(newsModel: e));
-                            },
-                            imgUrl:
-                                e.urlToImage ??
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
-                            author: e.author ?? "Unknown",
-                            title: e.title ?? "No Title",
-                            time: e.publishedAt ?? "No Time",
-                          ),
-                        )
-                        .toList(),
-                  ),
-                ),
-              ],
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: SearchBarWidget(),
             ),
-          ),
+            Expanded(
+              child: Obx(() => ListView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  itemCount: newsController.searchNewsList.length,
+                  itemBuilder: (context, index) {
+                    final e = newsController.searchNewsList[index];
+                    return NewsTile(
+                      onTap: () {
+                        Get.to(() => NewsDetailsPage(newsModel: e));
+                      },
+                      imgUrl: e.urlToImage ??
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
+                      author: e.author ?? "Unknown",
+                      title: e.title ?? "No Title",
+                      time: e.publishedAt ?? "No Time",
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

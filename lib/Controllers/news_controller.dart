@@ -17,10 +17,12 @@ class NewsController extends GetxController{
   RxList<NewsModel> appleNews5 = <NewsModel>[].obs;
   RxList<NewsModel> teslaNewsList = <NewsModel>[].obs;
   RxList<NewsModel> teslaNews5 = <NewsModel>[].obs;
+  RxList<NewsModel> searchNewsList = <NewsModel>[].obs;
   RxBool isTrendingLoading = false.obs;
   RxBool isNewsForYouLoading = false.obs;
   RxBool isAppleNewsLoading = false.obs;
   RxBool isTeslaNewsLoading = false.obs;
+  RxBool isSearchNewsLoading = false.obs;
 
   FlutterTts flutterTts = FlutterTts();
   RxBool isSpeaking = false.obs;
@@ -34,6 +36,7 @@ class NewsController extends GetxController{
     getNewsForYou();
     getAppleNews();
     getTeslaNews();
+    searchNews("search");
   }
 
   Future<void> getTrendingNews() async{
@@ -135,7 +138,7 @@ class NewsController extends GetxController{
 
   Future<void> searchNews(String search) async {
     var baseURL = "${dotenv.env['SEARCH_URL']}$search&apiKey=${dotenv.env['NEWS_API_KEY']}";
-    isNewsForYouLoading.value = true;
+    isSearchNewsLoading.value = true;
 
     try {
       var response = await http.get(Uri.parse(baseURL));
@@ -144,12 +147,12 @@ class NewsController extends GetxController{
         // print(response.body);
         var body = jsonDecode(response.body);
         var articles = body["articles"];
-        newsForYouList.clear();
+        searchNewsList.clear();
         int i = 0;
         for (var news in articles) {
           i++;
-          newsForYouList.add(NewsModel.fromJson(news));
-          if (i == 10) {
+          searchNewsList.add(NewsModel.fromJson(news));
+          if (i == 30) {
             break;
           }
         }
@@ -159,7 +162,7 @@ class NewsController extends GetxController{
     } catch (ex) {
       // print(ex);
     }
-    isNewsForYouLoading.value = false;
+    isSearchNewsLoading.value = false;
   }
 
   Future<void> speak(String text) async {

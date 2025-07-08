@@ -8,6 +8,7 @@ import 'package:news_app/Pages/HomePage/widgets/news_tile.dart';
 import 'package:news_app/Pages/HomePage/widgets/trending_card.dart';
 import 'package:news_app/Pages/NewsDetails/news_details.dart';
 import 'package:news_app/Pages/ProfilePage/profile_page.dart';
+import 'package:news_app/Pages/SeeAllNews/see_all_news.dart';
 import '../../Controllers/profile_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -88,9 +89,14 @@ class _HomePageState extends State<HomePage> {
                       "Hottest News",
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
-                    Text(
-                      "See All",
-                      style: Theme.of(context).textTheme.labelSmall,
+                    InkWell(
+                      onTap: (){
+                        Get.to(() => SeeAllNews(num: 0));
+                      },
+                      child: Text(
+                        "See All",
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
                     ),
                   ],
                 ),
@@ -135,9 +141,14 @@ class _HomePageState extends State<HomePage> {
                       "News For You",
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
-                    Text(
-                      "See All",
-                      style: Theme.of(context).textTheme.labelSmall,
+                    InkWell(
+                      onTap: (){
+                        Get.to(() => SeeAllNews(num: 1));
+                      },
+                      child: Text(
+                        "See All",
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
                     ),
                   ],
                 ),
@@ -176,9 +187,14 @@ class _HomePageState extends State<HomePage> {
                       "Apple News",
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
-                    Text(
-                      "See All",
-                      style: Theme.of(context).textTheme.labelSmall,
+                    InkWell(
+                      onTap: (){
+                        Get.to(() => SeeAllNews(num: 2));
+                      },
+                      child: Text(
+                        "See All",
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
                     ),
                   ],
                 ),
@@ -223,9 +239,14 @@ class _HomePageState extends State<HomePage> {
                       "Tesla News",
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
-                    Text(
-                      "See All",
-                      style: Theme.of(context).textTheme.labelSmall,
+                    InkWell(
+                      onTap: (){
+                        Get.to(() => SeeAllNews(num: 3));
+                      },
+                      child: Text(
+                        "See All",
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
                     ),
                   ],
                 ),
