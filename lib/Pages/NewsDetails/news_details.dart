@@ -17,37 +17,38 @@ class NewsDetailsPage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        newsController.stop();
-                        Get.back();
-                      },
-                      child: Container(
-                        child: Row(
-                          children: [
-                            Icon(Icons.arrow_back_ios_new),
-                            Text("Back"),
-                          ],
-                        ),
-                      ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      newsController.stop();
+                      Get.back();
+                    },
+                    child: Row(
+                      children: const [
+                        Icon(Icons.arrow_back_ios_new),
+                        SizedBox(width: 4),
+                        Text("Back"),
+                      ],
                     ),
-                  ],
-                ),
-                SizedBox(height: 30),
-                Container(
-                  height: 280,
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Row(
+                ],
+              ),
+              const SizedBox(height: 10),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
                     children: [
-                      Expanded(
+                      const SizedBox(height: 20),
+                      Container(
+                        height: 280,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
                           child: Image.network(
@@ -57,106 +58,108 @@ class NewsDetailsPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 20),
-                Text(
-                  newsModel.title ?? "No Title",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(
-                      newsModel.publishedAt ?? "No Date",
-                      style: Theme.of(context).textTheme.labelSmall,
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10),
-                Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 15,
-                      backgroundColor: Colors.red,
-                      child: Text(
-                        newsModel.author?[0] ?? "U",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      const SizedBox(height: 20),
+                      Text(
+                        newsModel.title ?? "No Title",
+                        style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       ),
-                    ),
-                    SizedBox(width: 10),
-                    Text(
-                      newsModel.author ?? "Unknown",
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Theme.of(context).colorScheme.secondaryContainer,
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Text(
+                            newsModel.publishedAt ?? "No Date",
+                            style: Theme.of(context).textTheme.labelSmall,
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 100),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primaryContainer,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child:Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Obx(() => InkWell(
-                            onTap: () {
-                              newsController.isSpeaking.value
-                                  ? newsController.stop()
-                                  : newsController.speak(
-                                newsModel.description ?? "No Description",
-                              );
-                            },
-                            borderRadius: BorderRadius.circular(40),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .surfaceContainerHighest
-                                    ..withValues(alpha: (0.2)),
-                              ),
-                              child: Icon(
-                                newsController.isSpeaking.value
-                                    ? Icons.stop_rounded
-                                    : Icons.play_arrow_rounded,
-                                size: 35,
-                                color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 15,
+                            backgroundColor: Colors.red,
+                            child: Text(
+                              newsModel.author?[0] ?? "U",
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
-                        ),
-                        Obx(
-                              () => Lottie.asset(
-                            'assets/Animations/textToSpeech.json',
-                            height: 80,
-                            // width: 100,
-                            fit: BoxFit.contain,
-                            animate: newsController.isSpeaking.value,
+                          const SizedBox(width: 10),
+                          Flexible(
+                            child: Text(
+                              newsModel.author ?? "Unknown",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Theme.of(context).colorScheme.secondaryContainer,
+                              ),
+                            ),
                           ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 100),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primaryContainer,
+                          borderRadius: BorderRadius.circular(15),
                         ),
-                      ],
-                    ),
-                ),
-                SizedBox(height: 20),
-                Text(
-                  newsModel.description ?? "No Description",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Theme.of(context).colorScheme.secondaryContainer,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Obx(() => InkWell(
+                              onTap: () {
+                                newsController.isSpeaking.value
+                                    ? newsController.stop()
+                                    : newsController.speak(
+                                  newsModel.description ?? "No Description",
+                                );
+                              },
+                              borderRadius: BorderRadius.circular(40),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .surfaceContainerHighest
+                                      .withAlpha(50),
+                                ),
+                                child: Icon(
+                                  newsController.isSpeaking.value
+                                      ? Icons.stop_rounded
+                                      : Icons.play_arrow_rounded,
+                                  size: 35,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onPrimaryContainer,
+                                ),
+                              ),
+                            )),
+                            Obx(
+                                  () => Lottie.asset(
+                                'assets/Animations/textToSpeech.json',
+                                height: 80,
+                                fit: BoxFit.contain,
+                                animate: newsController.isSpeaking.value,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        newsModel.description ?? "No Description",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Theme.of(context).colorScheme.secondaryContainer,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

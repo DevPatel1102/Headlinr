@@ -37,13 +37,12 @@ class ProfileController extends GetxController {
         uiSettings: [
           AndroidUiSettings(
             toolbarTitle: 'Crop Image',
-            toolbarColor: Colors.deepOrange,
-            toolbarWidgetColor: Colors.white,
+            toolbarColor: Theme.of(Get.context!).colorScheme.primary,
+            toolbarWidgetColor: Theme.of(Get.context!).colorScheme.onPrimary,
             initAspectRatio: CropAspectRatioPreset.original,
             lockAspectRatio: false,
             showCropGrid: true,
-            cropFrameColor: Colors.white,
-            // 👇 aspectRatioPresets moved here
+            cropFrameColor: Theme.of(Get.context!).colorScheme.onSurface,
             aspectRatioPresets: [
               CropAspectRatioPreset.square,
               CropAspectRatioPreset.original,

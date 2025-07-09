@@ -52,6 +52,7 @@ class NewsController extends GetxController{
         for(var news in articles){
           trendingNewsList.add(NewsModel.fromJson(news));
         }
+        trendingNewsList.shuffle();
       }else{
         // print("Something went wrong in Trending News");
       }
@@ -76,7 +77,9 @@ class NewsController extends GetxController{
         for(var news in articles){
           newsForYouList.add(NewsModel.fromJson(news));
         }
-        newsForYou5.value = newsForYouList.sublist(0,5).obs;
+        var tempList = List<NewsModel>.from(newsForYouList);
+        tempList.shuffle();
+        newsForYou5.value = tempList.take(5).toList();
       }else{
         // print("Something went wrong in NewsSection");
       }
@@ -101,7 +104,9 @@ class NewsController extends GetxController{
         for(var news in articles){
           appleNewsList.add(NewsModel.fromJson(news));
         }
-        appleNews5.value = appleNewsList.sublist(0,5).obs;
+        var tempList = List<NewsModel>.from(appleNewsList);
+        tempList.shuffle();
+        appleNews5.value = tempList.take(5).toList();
       }else{
         // print("Something went wrong in Apple News");
       }
@@ -125,7 +130,9 @@ class NewsController extends GetxController{
         for(var news in articles){
           teslaNewsList.add(NewsModel.fromJson(news));
         }
-        teslaNews5.value = teslaNewsList.sublist(0,5).obs;
+        var tempList = List<NewsModel>.from(teslaNewsList);
+        tempList.shuffle();
+        teslaNews5.value = tempList.take(5).toList();
       }else{
         // print("Something went wrong in Tesla News");
       }
@@ -155,6 +162,7 @@ class NewsController extends GetxController{
           if (i == 30) {
             break;
           }
+          searchNewsList.shuffle();
         }
       } else {
         // print("Something went wrong in search");
