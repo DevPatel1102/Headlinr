@@ -34,251 +34,254 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                        borderRadius: BorderRadius.circular(100),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: const Icon(Icons.dashboard),
+                  ),
+                  Text(
+                    "Headlinr",
+                    style: Theme.of(context).textTheme.headlineLarge,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Get.to(() => ProfilePage());
+                    },
+                    child: Obx(() {
+                      final imagePath = profileController.imagePath.value;
+                      return CircleAvatar(
+                        radius: 25,
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        backgroundImage: imagePath.isNotEmpty
+                            ? FileImage(File(imagePath))
+                            : null,
+                        child: imagePath.isEmpty
+                            ? Icon(
+                          Icons.person,
+                          size: 25,
+                          color: Theme.of(context).colorScheme.onPrimaryContainer,
+                        )
+                            : null,
+                      );
+                    }),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Hottest News",
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                          InkWell(
+                            onTap: (){
+                              Get.to(() => SeeAllNews(num: 0));
+                            },
+                            child: Text(
+                              "See All",
+                              style: Theme.of(context).textTheme.labelSmall,
+                            ),
+                          ),
+                        ],
                       ),
-                      child: Icon(Icons.dashboard),
-                    ),
-                    Text(
-                      "Headlinr",
-                      style: Theme.of(context).textTheme.headlineLarge,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.to(() => ProfilePage());
-                      },
-                      child: Obx(() {
-                        final imagePath = profileController.imagePath.value;
-                        return CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Theme.of(
-                            context,
-                          ).colorScheme.primary,
-                          backgroundImage: imagePath.isNotEmpty
-                              ? FileImage(File(imagePath))
-                              : null,
-                          child: imagePath.isEmpty
-                              ? Icon(
-                                  Icons.person,
-                                  size: 25,
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onPrimaryContainer,
-                                )
-                              : null,
-                        );
-                      }),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 40),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Hottest News",
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    InkWell(
-                      onTap: (){
-                        Get.to(() => SeeAllNews(num: 0));
-                      },
-                      child: Text(
-                        "See All",
-                        style: Theme.of(context).textTheme.labelSmall,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Obx(
-                    () => newsController.isTrendingLoading.value
-                        ? const Row(
+                      SizedBox(height: 20),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Obx(
+                              () => newsController.isTrendingLoading.value
+                              ? const Row(
                             children: [
                               TrendingLoadingCard(),
                               TrendingLoadingCard(),
                             ],
                           )
-                        : Row(
+                              : Row(
                             children: newsController.trendingNewsList
                                 .map(
                                   (e) => TrendingCard(
-                                    imageUrl:
-                                        e.urlToImage ??
-                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
-                                    tag: "Trending no 1",
-                                    time: e.publishedAt ?? "No Date",
-                                    title: e.title ?? "No Title",
-                                    author: e.author ?? "Unknown",
-                                    onTap: () {
-                                      Get.to(
+                                imageUrl:
+                                e.urlToImage ??
+                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
+                                tag: "Trending no 1",
+                                time: e.publishedAt ?? "No Date",
+                                title: e.title ?? "No Title",
+                                author: e.author ?? "Unknown",
+                                onTap: () {
+                                  Get.to(
                                         () => NewsDetailsPage(newsModel: e),
-                                      );
-                                    },
-                                  ),
-                                )
+                                  );
+                                },
+                              ),
+                            )
                                 .toList(),
                           ),
-                  ),
-                ),
-                SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "News For You",
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    InkWell(
-                      onTap: (){
-                        Get.to(() => SeeAllNews(num: 1));
-                      },
-                      child: Text(
-                        "See All",
-                        style: Theme.of(context).textTheme.labelSmall,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20),
-                Obx(
-                  () => newsController.isNewsForYouLoading.value
-                      ? Column(
+                      SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "News For You",
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                          InkWell(
+                            onTap: (){
+                              Get.to(() => SeeAllNews(num: 1));
+                            },
+                            child: Text(
+                              "See All",
+                              style: Theme.of(context).textTheme.labelSmall,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      Obx(
+                            () => newsController.isNewsForYouLoading.value
+                            ? Column(
                           children: [
                             NewsTileLoadingCard(),
                             NewsTileLoadingCard(),
                           ],
                         )
-                      : Column(
+                            : Column(
                           children: newsController.newsForYou5
                               .map(
                                 (e) => NewsTile(
-                                  imgUrl:
-                                      e.urlToImage ??
-                                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
-                                  author: e.author ?? "Unknown",
-                                  title: e.title ?? "No Title",
-                                  time: e.publishedAt ?? "No Date",
-                                  onTap: () {
-                                    Get.to(() => NewsDetailsPage(newsModel: e));
-                                  },
-                                ),
-                              )
+                              imgUrl:
+                              e.urlToImage ??
+                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
+                              author: e.author ?? "Unknown",
+                              title: e.title ?? "No Title",
+                              time: e.publishedAt ?? "No Date",
+                              onTap: () {
+                                Get.to(() => NewsDetailsPage(newsModel: e));
+                              },
+                            ),
+                          )
                               .toList(),
                         ),
-                ),
-                SizedBox(height: 40),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Apple News",
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    InkWell(
-                      onTap: (){
-                        Get.to(() => SeeAllNews(num: 2));
-                      },
-                      child: Text(
-                        "See All",
-                        style: Theme.of(context).textTheme.labelSmall,
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Obx(
-                    () => newsController.isAppleNewsLoading.value
-                        ? Row(
+                      SizedBox(height: 40),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Apple News",
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                          InkWell(
+                            onTap: (){
+                              Get.to(() => SeeAllNews(num: 2));
+                            },
+                            child: Text(
+                              "See All",
+                              style: Theme.of(context).textTheme.labelSmall,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Obx(
+                              () => newsController.isAppleNewsLoading.value
+                              ? Row(
                             children: [
                               TrendingLoadingCard(),
                               TrendingLoadingCard(),
                             ],
                           )
-                        : Row(
+                              : Row(
                             children: newsController.appleNews5
                                 .map(
                                   (e) => TrendingCard(
-                                    imageUrl:
-                                        e.urlToImage ??
-                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
-                                    tag: "Trending no 1",
-                                    time: e.publishedAt ?? "No Date",
-                                    title: e.title ?? "No Title",
-                                    author: e.author ?? "Unknown",
-                                    onTap: () {
-                                      Get.to(
+                                imageUrl:
+                                e.urlToImage ??
+                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
+                                tag: "Trending no 1",
+                                time: e.publishedAt ?? "No Date",
+                                title: e.title ?? "No Title",
+                                author: e.author ?? "Unknown",
+                                onTap: () {
+                                  Get.to(
                                         () => NewsDetailsPage(newsModel: e),
-                                      );
-                                    },
-                                  ),
-                                )
+                                  );
+                                },
+                              ),
+                            )
                                 .toList(),
                           ),
-                  ),
-                ),
-                SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Tesla News",
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    InkWell(
-                      onTap: (){
-                        Get.to(() => SeeAllNews(num: 3));
-                      },
-                      child: Text(
-                        "See All",
-                        style: Theme.of(context).textTheme.labelSmall,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20),
-                Obx(
-                  () => newsController.isTeslaNewsLoading.value
-                      ? Column(
+                      SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Tesla News",
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                          InkWell(
+                            onTap: (){
+                              Get.to(() => SeeAllNews(num: 3));
+                            },
+                            child: Text(
+                              "See All",
+                              style: Theme.of(context).textTheme.labelSmall,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      Obx(
+                            () => newsController.isTeslaNewsLoading.value
+                            ? Column(
                           children: [
                             NewsTileLoadingCard(),
                             NewsTileLoadingCard(),
                           ],
                         )
-                      : Column(
+                            : Column(
                           children: newsController.teslaNews5
                               .map(
                                 (e) => NewsTile(
-                                  imgUrl:
-                                      e.urlToImage ??
-                                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
-                                  author: e.author ?? "Unknown",
-                                  title: e.title ?? "No Title",
-                                  time: e.publishedAt ?? "No Date",
-                                  onTap: () {
-                                    Get.to(() => NewsDetailsPage(newsModel: e));
-                                  },
-                                ),
-                              )
+                              imgUrl:
+                              e.urlToImage ??
+                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
+                              author: e.author ?? "Unknown",
+                              title: e.title ?? "No Title",
+                              time: e.publishedAt ?? "No Date",
+                              onTap: () {
+                                Get.to(() => NewsDetailsPage(newsModel: e));
+                              },
+                            ),
+                          )
                               .toList(),
                         ),
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
