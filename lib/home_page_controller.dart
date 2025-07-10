@@ -23,76 +23,76 @@ class _HomePageControllerState extends State<HomePageController> {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        key: scaffoldKey,
-        appBar: (controller.index.value == 0)
-            ? AppBar(
-                backgroundColor: Theme.of(context).colorScheme.surface,
-                elevation: 0,
-                scrolledUnderElevation: 0,
-                bottom: PreferredSize(
-                  preferredSize: const Size.fromHeight(16),
-                  // height of your padding
-                  child: SizedBox(height: 16), // actual bottom padding
-                ),
-                leading: Transform.translate(
-                  offset: const Offset(8, 0), // Moves it right by 8 pixels
-                  child: GestureDetector(
-                    onTap: toggleDrawer,
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                        borderRadius: BorderRadius.circular(100),
+          key: scaffoldKey,
+          appBar: (controller.index.value == 0)
+              ? AppBar(
+                  backgroundColor: Theme.of(context).colorScheme.surface,
+                  elevation: 0,
+                  scrolledUnderElevation: 0,
+                  bottom: PreferredSize(
+                    preferredSize: const Size.fromHeight(16),
+                    // height of your padding
+                    child: SizedBox(height: 16), // actual bottom padding
+                  ),
+                  leading: Transform.translate(
+                    offset: const Offset(12, 0), // Moves it right by 8 pixels
+                    child: GestureDetector(
+                      onTap: toggleDrawer,
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primaryContainer,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: const Icon(Icons.dashboard),
                       ),
-                      child: const Icon(Icons.dashboard),
                     ),
                   ),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        "Headlinr",
-                        style: Theme.of(context).textTheme.headlineLarge,
-                      ),
+                  title: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            "Headlinr",
+                            style: Theme.of(context).textTheme.headlineLarge,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Get.to(() => ProfilePage());
+                          },
+                          child: Obx(() {
+                            final imagePath = profileController.imagePath.value;
+                            return CircleAvatar(
+                              radius: 25,
+                              backgroundColor: Theme.of(
+                                context,
+                              ).colorScheme.primary,
+                              backgroundImage: imagePath.isNotEmpty
+                                  ? FileImage(File(imagePath))
+                                  : null,
+                              child: imagePath.isEmpty
+                                  ? Icon(
+                                      Icons.person,
+                                      size: 25,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onPrimaryContainer,
+                                    )
+                                  : null,
+                            );
+                          }),
+                        ),
+                      ],
                     ),
-                    InkWell(
-                      onTap: () {
-                        Get.to(() => ProfilePage());
-                      },
-                      child: Obx(() {
-                        final imagePath = profileController.imagePath.value;
-                        return CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Theme.of(
-                            context,
-                          ).colorScheme.primary,
-                          backgroundImage: imagePath.isNotEmpty
-                              ? FileImage(File(imagePath))
-                              : null,
-                          child: imagePath.isEmpty
-                              ? Icon(
-                                  Icons.person,
-                                  size: 25,
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onPrimaryContainer,
-                                )
-                              : null,
-                        );
-                      }),
-                    ),
-                  ],
-                ),
-              )
-            : null,
-        floatingActionButton: MyBottomNav(),
-        drawer: const DashboardDrawer(),
-        body: Obx(() => controller.pages[controller.index.value]),
-      ),
+                )
+              : null,
+          floatingActionButton: MyBottomNav(),
+          drawer: const DashboardDrawer(),
+          body: Obx(() => controller.pages[controller.index.value]),
+        ),
     );
   }
 
