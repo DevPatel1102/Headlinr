@@ -10,6 +10,7 @@ import 'package:news_app/Pages/NewsDetails/news_details.dart';
 import 'package:news_app/Pages/ProfilePage/profile_page.dart';
 import 'package:news_app/Pages/SeeAllNews/see_all_news.dart';
 import '../../Controllers/profile_controller.dart';
+import '../Dashboard/dashboard_drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,6 +25,15 @@ class _HomePageState extends State<HomePage> {
     final NewsController newsController = Get.put(NewsController());
     final ProfileController profileController = Get.put(ProfileController());
 
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+    void toggleDrawer() {
+      if (scaffoldKey.currentState!.isDrawerOpen) {
+        Navigator.of(context).pop(); // Closes drawer
+      } else {
+        scaffoldKey.currentState!.openDrawer(); // Opens drawer
+      }
+    }
+
     return Scaffold(
       // appBar: AppBar(
       //   title: Text(
@@ -31,6 +41,8 @@ class _HomePageState extends State<HomePage> {
       //     style: Theme.of(context).textTheme.headlineLarge,
       //   ),
       // ),
+      key: scaffoldKey, // Assign the global key
+      drawer: const DashboardDrawer(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -39,14 +51,17 @@ class _HomePageState extends State<HomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primaryContainer,
-                      borderRadius: BorderRadius.circular(100),
+                  GestureDetector(
+                    onTap: toggleDrawer,
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: const Icon(Icons.dashboard),
                     ),
-                    child: const Icon(Icons.dashboard),
                   ),
                   Text(
                     "Headlinr",

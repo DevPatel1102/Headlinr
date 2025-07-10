@@ -85,14 +85,6 @@ class ProfilePage extends StatelessWidget {
           ),
           const SizedBox(height: 30),
 
-          // Settings Navigation
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title: Text("Settings", style: theme.textTheme.bodyLarge),
-            trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-            onTap: () => Get.to(() => ProfileSettingsPage()),
-          ),
-
           // Edit Profile (Placeholder)
           ListTile(
             leading: const Icon(Icons.edit),
@@ -101,6 +93,14 @@ class ProfilePage extends StatelessWidget {
             onTap: () {
               Get.to(() => const EditProfilePage());
             },
+          ),
+
+          // Settings Navigation
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: Text("Settings", style: theme.textTheme.bodyLarge),
+            trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+            onTap: () => Get.to(() => ProfileSettingsPage()),
           ),
 
           // // Logout
