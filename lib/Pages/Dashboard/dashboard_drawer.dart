@@ -1,7 +1,5 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:news_app/Controllers/profile_controller.dart';
 import 'package:get/get.dart';
 import 'package:news_app/Pages/ArticlePage/article_page.dart';
@@ -22,7 +20,7 @@ class DashboardDrawer extends StatelessWidget {
 
     return Drawer(
       child: Container(
-        color: colorScheme.background,
+        color: colorScheme.surface,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -54,15 +52,15 @@ class DashboardDrawer extends StatelessWidget {
                 ],
               ),
             ),
-            _buildDrawerItem(
-              icon: Icons.article_outlined,
-              text: 'Articles',
-              onTap: () {
-                Navigator.of(context).pop();
-                Get.to(() => ArticlePage());
-              },
-              context: context,
-            ),
+            // _buildDrawerItem(
+            //   icon: Icons.article_outlined,
+            //   text: 'Articles',
+            //   onTap: () {
+            //     Navigator.of(context).pop();
+            //     Get.to(() => ArticlePage());
+            //   },
+            //   context: context,
+            // ),
             _buildDrawerItem(
               icon: Icons.person,
               text: 'Profile',
@@ -109,7 +107,7 @@ class DashboardDrawer extends StatelessWidget {
       title: Text(
         text,
         style: TextStyle(
-          color: color ?? colorScheme.onBackground,
+          color: color ?? colorScheme.onSurface,
         ),
       ),
       onTap: onTap,

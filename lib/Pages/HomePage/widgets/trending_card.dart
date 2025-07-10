@@ -66,7 +66,7 @@ class TrendingCard extends StatelessWidget {
               ],
             ),
             SizedBox(height: 5),
-            Container(
+            SizedBox(
               height: 40,
               child: Row(
                 children: [
