@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:news_app/Controllers/profile_controller.dart';
 import 'package:get/get.dart';
-import 'package:news_app/Pages/ArticlePage/article_page.dart';
 import 'package:news_app/Pages/ProfilePage/profile_page.dart';
 import 'package:news_app/Pages/ProfileSettingsPage/profile_settings_page.dart';
 

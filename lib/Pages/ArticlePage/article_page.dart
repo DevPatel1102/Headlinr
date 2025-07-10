@@ -19,6 +19,7 @@ class ArticlePage extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: SearchBarWidget(),
             ),
+            SizedBox(height: 10,),
             Expanded(
               child: Obx(() => ListView.builder(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
