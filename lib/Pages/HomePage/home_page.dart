@@ -81,10 +81,12 @@ class _HomePageState extends State<HomePage> {
                             : null,
                         child: imagePath.isEmpty
                             ? Icon(
-                          Icons.person,
-                          size: 25,
-                          color: Theme.of(context).colorScheme.onPrimaryContainer,
-                        )
+                                Icons.person,
+                                size: 25,
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.onPrimaryContainer,
+                              )
                             : null,
                       );
                     }),
@@ -105,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                             style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           InkWell(
-                            onTap: (){
+                            onTap: () {
                               Get.to(() => SeeAllNews(num: 0));
                             },
                             child: Text(
@@ -119,33 +121,34 @@ class _HomePageState extends State<HomePage> {
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Obx(
-                              () => newsController.isTrendingLoading.value
+                          () => newsController.isTrendingLoading.value
                               ? const Row(
-                            children: [
-                              TrendingLoadingCard(),
-                              TrendingLoadingCard(),
-                            ],
-                          )
+                                  children: [
+                                    TrendingLoadingCard(),
+                                    TrendingLoadingCard(),
+                                  ],
+                                )
                               : Row(
-                            children: newsController.trendingNewsList
-                                .map(
-                                  (e) => TrendingCard(
-                                imageUrl:
-                                e.urlToImage ??
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
-                                tag: "Trending no 1",
-                                time: e.publishedAt ?? "No Date",
-                                title: e.title ?? "No Title",
-                                author: e.author ?? "Unknown",
-                                onTap: () {
-                                  Get.to(
-                                        () => NewsDetailsPage(newsModel: e),
-                                  );
-                                },
-                              ),
-                            )
-                                .toList(),
-                          ),
+                                  children: newsController.trendingNewsList
+                                      .map(
+                                        (e) => TrendingCard(
+                                          imageUrl:
+                                              e.urlToImage ??
+                                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
+                                          tag: "Trending no 1",
+                                          time: e.publishedAt ?? "No Date",
+                                          title: e.title ?? "No Title",
+                                          author: e.author ?? "Unknown",
+                                          onTap: () {
+                                            Get.to(
+                                              () =>
+                                                  NewsDetailsPage(newsModel: e),
+                                            );
+                                          },
+                                        ),
+                                      )
+                                      .toList(),
+                                ),
                         ),
                       ),
                       SizedBox(height: 20),
@@ -153,11 +156,11 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "News For You",
+                            "Today's Buzz",
                             style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           InkWell(
-                            onTap: (){
+                            onTap: () {
                               Get.to(() => SeeAllNews(num: 1));
                             },
                             child: Text(
@@ -169,30 +172,32 @@ class _HomePageState extends State<HomePage> {
                       ),
                       SizedBox(height: 20),
                       Obx(
-                            () => newsController.isNewsForYouLoading.value
+                        () => newsController.isNewsForYouLoading.value
                             ? Column(
-                          children: [
-                            NewsTileLoadingCard(),
-                            NewsTileLoadingCard(),
-                          ],
-                        )
+                                children: [
+                                  NewsTileLoadingCard(),
+                                  NewsTileLoadingCard(),
+                                ],
+                              )
                             : Column(
-                          children: newsController.newsForYou5
-                              .map(
-                                (e) => NewsTile(
-                              imgUrl:
-                              e.urlToImage ??
-                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
-                              author: e.author ?? "Unknown",
-                              title: e.title ?? "No Title",
-                              time: e.publishedAt ?? "No Date",
-                              onTap: () {
-                                Get.to(() => NewsDetailsPage(newsModel: e));
-                              },
-                            ),
-                          )
-                              .toList(),
-                        ),
+                                children: newsController.newsForYou5
+                                    .map(
+                                      (e) => NewsTile(
+                                        imgUrl:
+                                            e.urlToImage ??
+                                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
+                                        author: e.author ?? "Unknown",
+                                        title: e.title ?? "No Title",
+                                        time: e.publishedAt ?? "No Date",
+                                        onTap: () {
+                                          Get.to(
+                                            () => NewsDetailsPage(newsModel: e),
+                                          );
+                                        },
+                                      ),
+                                    )
+                                    .toList(),
+                              ),
                       ),
                       SizedBox(height: 40),
                       Row(
@@ -203,7 +208,7 @@ class _HomePageState extends State<HomePage> {
                             style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           InkWell(
-                            onTap: (){
+                            onTap: () {
                               Get.to(() => SeeAllNews(num: 2));
                             },
                             child: Text(
@@ -217,33 +222,34 @@ class _HomePageState extends State<HomePage> {
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Obx(
-                              () => newsController.isAppleNewsLoading.value
+                          () => newsController.isAppleNewsLoading.value
                               ? Row(
-                            children: [
-                              TrendingLoadingCard(),
-                              TrendingLoadingCard(),
-                            ],
-                          )
+                                  children: [
+                                    TrendingLoadingCard(),
+                                    TrendingLoadingCard(),
+                                  ],
+                                )
                               : Row(
-                            children: newsController.appleNews5
-                                .map(
-                                  (e) => TrendingCard(
-                                imageUrl:
-                                e.urlToImage ??
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
-                                tag: "Trending no 1",
-                                time: e.publishedAt ?? "No Date",
-                                title: e.title ?? "No Title",
-                                author: e.author ?? "Unknown",
-                                onTap: () {
-                                  Get.to(
-                                        () => NewsDetailsPage(newsModel: e),
-                                  );
-                                },
-                              ),
-                            )
-                                .toList(),
-                          ),
+                                  children: newsController.appleNews5
+                                      .map(
+                                        (e) => TrendingCard(
+                                          imageUrl:
+                                              e.urlToImage ??
+                                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
+                                          tag: "Trending no 1",
+                                          time: e.publishedAt ?? "No Date",
+                                          title: e.title ?? "No Title",
+                                          author: e.author ?? "Unknown",
+                                          onTap: () {
+                                            Get.to(
+                                              () =>
+                                                  NewsDetailsPage(newsModel: e),
+                                            );
+                                          },
+                                        ),
+                                      )
+                                      .toList(),
+                                ),
                         ),
                       ),
                       SizedBox(height: 20),
@@ -255,7 +261,7 @@ class _HomePageState extends State<HomePage> {
                             style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           InkWell(
-                            onTap: (){
+                            onTap: () {
                               Get.to(() => SeeAllNews(num: 3));
                             },
                             child: Text(
@@ -267,30 +273,32 @@ class _HomePageState extends State<HomePage> {
                       ),
                       SizedBox(height: 20),
                       Obx(
-                            () => newsController.isTeslaNewsLoading.value
+                        () => newsController.isTeslaNewsLoading.value
                             ? Column(
-                          children: [
-                            NewsTileLoadingCard(),
-                            NewsTileLoadingCard(),
-                          ],
-                        )
+                                children: [
+                                  NewsTileLoadingCard(),
+                                  NewsTileLoadingCard(),
+                                ],
+                              )
                             : Column(
-                          children: newsController.teslaNews5
-                              .map(
-                                (e) => NewsTile(
-                              imgUrl:
-                              e.urlToImage ??
-                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
-                              author: e.author ?? "Unknown",
-                              title: e.title ?? "No Title",
-                              time: e.publishedAt ?? "No Date",
-                              onTap: () {
-                                Get.to(() => NewsDetailsPage(newsModel: e));
-                              },
-                            ),
-                          )
-                              .toList(),
-                        ),
+                                children: newsController.teslaNews5
+                                    .map(
+                                      (e) => NewsTile(
+                                        imgUrl:
+                                            e.urlToImage ??
+                                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
+                                        author: e.author ?? "Unknown",
+                                        title: e.title ?? "No Title",
+                                        time: e.publishedAt ?? "No Date",
+                                        onTap: () {
+                                          Get.to(
+                                            () => NewsDetailsPage(newsModel: e),
+                                          );
+                                        },
+                                      ),
+                                    )
+                                    .toList(),
+                              ),
                       ),
                     ],
                   ),
