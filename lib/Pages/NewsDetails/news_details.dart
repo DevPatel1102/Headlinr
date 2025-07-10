@@ -81,6 +81,7 @@ class NewsDetailsPage extends StatelessWidget {
                             child: Text(
                               newsModel.author?[0] ?? "U",
                               style: const TextStyle(
+                                color: Colors.white,
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
                               ),

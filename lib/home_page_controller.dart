@@ -67,9 +67,7 @@ class _HomePageControllerState extends State<HomePageController> {
                             final imagePath = profileController.imagePath.value;
                             return CircleAvatar(
                               radius: 25,
-                              backgroundColor: Theme.of(
-                                context,
-                              ).colorScheme.primary,
+                              backgroundColor: Theme.of(context).colorScheme.primaryContainer,
                               backgroundImage: imagePath.isNotEmpty
                                   ? FileImage(File(imagePath))
                                   : null,

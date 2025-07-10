@@ -66,6 +66,7 @@ class NewsTile extends StatelessWidget {
                         child: Text(
                           author.isNotEmpty ? author[0] : 'U',
                           style: TextStyle(
+                              color: Colors.white,
                               fontSize: 15,
                               fontWeight: FontWeight.bold
                           ),

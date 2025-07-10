@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 const lightBgColor = Color(0xffFFFFFF);
 const lightFontColor = Color(0xff191B28);
 const lightDivColor = Color(0xfff3f3f3);
-const lightPrimaryColor = Color(0xffa2c3ff);
+const lightPrimaryColor = Color(0xff5a90f8);
 const lightLabelColor = Color(0xff8E8E8E);
 const lightBottomNavColor = Color(0xfff8f8f8);
 

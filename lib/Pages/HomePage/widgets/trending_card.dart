@@ -77,8 +77,10 @@ class TrendingCard extends StatelessWidget {
                     child: Text(
                       author[0],
                       style: TextStyle(
+                          color: Colors.white,
                           fontSize: 15,
                           fontWeight: FontWeight.bold
+
                       ),
                     ),
                   ),
