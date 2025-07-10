@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../Constants/string_constants.dart';
 import '../../Controllers/news_controller.dart';
 import '../../Model/news_model.dart';
 import '../HomePage/widgets/news_tile.dart';
@@ -66,10 +67,10 @@ class SeeAllNews extends StatelessWidget {
                         Get.to(() => NewsDetailsPage(newsModel: e));
                       },
                       imgUrl: e.urlToImage ??
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
-                      author: e.author ?? "Unknown",
-                      title: e.title ?? "No Title",
-                      time: e.publishedAt ?? "No Time",
+                          StringConstants.placeholderImage,
+                      author: e.author ?? StringConstants.authorPlaceholder,
+                      title: e.title ?? StringConstants.titlePlaceholder,
+                      time: e.publishedAt ?? StringConstants.datePlaceholder,
                     );
                   },
                 ),

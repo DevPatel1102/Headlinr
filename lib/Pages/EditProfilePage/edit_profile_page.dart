@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../Constants/string_constants.dart';
 import '../../Controllers/profile_controller.dart';
 
 class EditProfilePage extends StatelessWidget {
@@ -16,7 +17,7 @@ class EditProfilePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Edit Profile", style: theme.textTheme.headlineMedium),
+        title: Text(StringConstants.editProfile, style: theme.textTheme.headlineMedium),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -24,12 +25,12 @@ class EditProfilePage extends StatelessWidget {
           children: [
             TextField(
               controller: nameController,
-              decoration: const InputDecoration(labelText: "Name"),
+              decoration: const InputDecoration(labelText: StringConstants.userNameLabel),
             ),
             const SizedBox(height: 16),
             TextField(
               controller: emailController,
-              decoration: const InputDecoration(labelText: "Email"),
+              decoration: const InputDecoration(labelText: StringConstants.userEmailLabel),
             ),
             const SizedBox(height: 32),
             ElevatedButton.icon(

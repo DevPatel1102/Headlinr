@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:news_app/Constants/string_constants.dart';
 import 'package:news_app/Controllers/profile_controller.dart';
 import 'package:get/get.dart';
 import 'package:news_app/Pages/ProfilePage/profile_page.dart';
@@ -62,7 +63,7 @@ class DashboardDrawer extends StatelessWidget {
             // ),
             _buildDrawerItem(
               icon: Icons.person,
-              text: 'Profile',
+              text: StringConstants.profile,
               onTap: () {
                 Navigator.of(context).pop();
                 Get.to(() => ProfilePage());
@@ -71,7 +72,7 @@ class DashboardDrawer extends StatelessWidget {
             ),
             _buildDrawerItem(
               icon: Icons.settings,
-              text: 'Settings',
+              text: StringConstants.settings,
               onTap: () {
                 Navigator.of(context).pop();
                 Get.to(() => ProfileSettingsPage());
@@ -82,7 +83,7 @@ class DashboardDrawer extends StatelessWidget {
             // App version info
             Center(
               child: Text(
-                "Headlinr • v1.0.0",
+                StringConstants.appNameWithVersion,
                 style: Theme.of(context).textTheme.labelSmall,
               ),
             ),

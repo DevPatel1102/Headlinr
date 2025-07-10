@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../Constants/string_constants.dart';
+
 class NewsTile extends StatelessWidget {
 
   final String imgUrl;
@@ -43,7 +45,7 @@ class NewsTile extends StatelessWidget {
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
                       return Image.network(
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
+                        StringConstants.placeholderImage,
                         fit: BoxFit.cover,
                       );
                     },
@@ -64,7 +66,7 @@ class NewsTile extends StatelessWidget {
                           context,
                         ).colorScheme.primary,
                         child: Text(
-                          author.isNotEmpty ? author[0] : 'U',
+                          author.isNotEmpty ? author[0] : StringConstants.authorDefaultLetter,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 15,

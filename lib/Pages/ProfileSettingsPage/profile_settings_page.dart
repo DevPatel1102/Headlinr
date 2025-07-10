@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:news_app/Constants/string_constants.dart';
 import 'package:news_app/Controllers/profile_settings_controller.dart';
 
 class ProfileSettingsPage extends StatelessWidget {
@@ -13,7 +14,7 @@ class ProfileSettingsPage extends StatelessWidget {
       top:false,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Settings", style: Theme.of(context).textTheme.headlineMedium),
+          title: Text(StringConstants.settings, style: Theme.of(context).textTheme.headlineMedium),
         ),
         body: ListView(
           padding: const EdgeInsets.all(16.0),
@@ -37,12 +38,12 @@ class ProfileSettingsPage extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.info_outline),
               title: Text("About", style: Theme.of(context).textTheme.bodyLarge),
-              subtitle: const Text("Version 1.0.0"),
+              subtitle: const Text(StringConstants.appVersionWithText),
               onTap: () {
                 showAboutDialog(
                   context: context,
-                  applicationName: "Headlinr",
-                  applicationVersion: "1.0.0",
+                  applicationName: StringConstants.appName,
+                  applicationVersion: StringConstants.appVersion,
                   applicationIcon: Icon(Icons.newspaper, size: 40, color: Theme.of(context).colorScheme.primary),
                   children: [
                     const SizedBox(height: 10),

@@ -3,10 +3,11 @@ import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/Constants/string_constants.dart';
 
 class ProfileController extends GetxController {
-  var name = "Guest".obs;
-  var email = "guest@gmail.com".obs;
+  var name = StringConstants.defaultUserName.obs;
+  var email = StringConstants.defaultUserEmail.obs;
   var imagePath = "".obs;
   final _storage = GetStorage();
   final ImagePicker _picker = ImagePicker();
@@ -15,8 +16,8 @@ class ProfileController extends GetxController {
   void onInit() {
     super.onInit();
     // Load saved data
-    name.value = _storage.read('user_name') ?? "Guest";
-    email.value = _storage.read('user_email') ?? "guest@gmail.com";
+    name.value = _storage.read('user_name') ?? StringConstants.defaultUserName;
+    email.value = _storage.read('user_email') ?? StringConstants.defaultUserEmail;
     imagePath.value = _storage.read('user_image') ?? "";
   }
 

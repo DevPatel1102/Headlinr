@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class TrendingCard extends StatelessWidget {
   final String imageUrl;
-  final String tag;
   final String time;
   final String title;
   final String author;
@@ -11,7 +10,6 @@ class TrendingCard extends StatelessWidget {
   const TrendingCard({
     super.key,
     required this.imageUrl,
-    required this.tag,
     required this.time,
     required this.title,
     required this.author,
@@ -46,9 +44,8 @@ class TrendingCard extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(tag, style: Theme.of(context).textTheme.labelSmall),
                 Text(time, style: Theme.of(context).textTheme.labelSmall),
               ],
             ),

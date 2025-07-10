@@ -4,6 +4,8 @@ import 'package:news_app/Controllers/news_controller.dart';
 import 'package:news_app/Model/news_model.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../Constants/string_constants.dart';
+
 class NewsDetailsPage extends StatelessWidget {
   final NewsModel newsModel;
 
@@ -53,21 +55,21 @@ class NewsDetailsPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                           child: Image.network(
                             newsModel.urlToImage ??
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
+                                StringConstants.placeholderImage,
                             fit: BoxFit.cover,
                           ),
                         ),
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        newsModel.title ?? "No Title",
+                        newsModel.title ?? StringConstants.titlePlaceholder,
                         style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 10),
                       Row(
                         children: [
                           Text(
-                            newsModel.publishedAt ?? "No Date",
+                            newsModel.publishedAt ?? StringConstants.datePlaceholder,
                             style: Theme.of(context).textTheme.labelSmall,
                           ),
                         ],
@@ -79,7 +81,7 @@ class NewsDetailsPage extends StatelessWidget {
                             radius: 15,
                             backgroundColor: Colors.red,
                             child: Text(
-                              newsModel.author?[0] ?? "U",
+                              newsModel.author?[0] ?? StringConstants.authorDefaultLetter,
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
@@ -90,7 +92,7 @@ class NewsDetailsPage extends StatelessWidget {
                           const SizedBox(width: 10),
                           Flexible(
                             child: Text(
-                              newsModel.author ?? "Unknown",
+                              newsModel.author ?? StringConstants.authorPlaceholder,
                               style: TextStyle(
                                 fontSize: 18,
                                 color: Theme.of(context).colorScheme.secondaryContainer,
@@ -114,7 +116,7 @@ class NewsDetailsPage extends StatelessWidget {
                                 newsController.isSpeaking.value
                                     ? newsController.stop()
                                     : newsController.speak(
-                                  newsModel.description ?? "No Description",
+                                  newsModel.description ?? StringConstants.descriptionPlaceholder,
                                 );
                               },
                               borderRadius: BorderRadius.circular(40),
@@ -150,7 +152,7 @@ class NewsDetailsPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        newsModel.description ?? "No Description",
+                        newsModel.description ?? StringConstants.descriptionPlaceholder,
                         style: TextStyle(
                           fontSize: 18,
                           color: Theme.of(context).colorScheme.secondaryContainer,

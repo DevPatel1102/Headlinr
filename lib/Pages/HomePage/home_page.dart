@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_app/Components/news_tile_loading_card.dart';
 import 'package:news_app/Components/trending_loading_card.dart';
+import 'package:news_app/Constants/string_constants.dart';
 import 'package:news_app/Controllers/news_controller.dart';
 import 'package:news_app/Pages/HomePage/widgets/news_tile.dart';
 import 'package:news_app/Pages/HomePage/widgets/trending_card.dart';
@@ -35,7 +36,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Hottest News",
+                            StringConstants.hottestNews,
                             style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           InkWell(
@@ -43,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                               Get.to(() => SeeAllNews(num: 0));
                             },
                             child: Text(
-                              "See All",
+                              StringConstants.seeAll,
                               style: Theme.of(context).textTheme.labelSmall,
                             ),
                           ),
@@ -66,11 +67,10 @@ class _HomePageState extends State<HomePage> {
                                         (e) => TrendingCard(
                                           imageUrl:
                                               e.urlToImage ??
-                                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
-                                          tag: "Trending no 1",
-                                          time: e.publishedAt ?? "No Date",
-                                          title: e.title ?? "No Title",
-                                          author: e.author ?? "Unknown",
+                                              StringConstants.placeholderImage,
+                                          time: e.publishedAt ?? StringConstants.datePlaceholder,
+                                          title: e.title ?? StringConstants.titlePlaceholder,
+                                          author: e.author ?? StringConstants.authorPlaceholder,
                                           onTap: () {
                                             Get.to(
                                               () =>
@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Today's Buzz",
+                            StringConstants.todayBuzz,
                             style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           InkWell(
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                               Get.to(() => SeeAllNews(num: 1));
                             },
                             child: Text(
-                              "See All",
+                              StringConstants.seeAll,
                               style: Theme.of(context).textTheme.labelSmall,
                             ),
                           ),
@@ -117,10 +117,10 @@ class _HomePageState extends State<HomePage> {
                                       (e) => NewsTile(
                                         imgUrl:
                                             e.urlToImage ??
-                                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
-                                        author: e.author ?? "Unknown",
-                                        title: e.title ?? "No Title",
-                                        time: e.publishedAt ?? "No Date",
+                                                StringConstants.placeholderImage,
+                                        author: e.author ?? StringConstants.authorPlaceholder,
+                                        title: e.title ?? StringConstants.titlePlaceholder,
+                                        time: e.publishedAt ?? StringConstants.datePlaceholder,
                                         onTap: () {
                                           Get.to(
                                             () => NewsDetailsPage(newsModel: e),
@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Apple News",
+                            StringConstants.appleNews,
                             style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           InkWell(
@@ -144,7 +144,7 @@ class _HomePageState extends State<HomePage> {
                               Get.to(() => SeeAllNews(num: 2));
                             },
                             child: Text(
-                              "See All",
+                              StringConstants.seeAll,
                               style: Theme.of(context).textTheme.labelSmall,
                             ),
                           ),
@@ -167,11 +167,10 @@ class _HomePageState extends State<HomePage> {
                                         (e) => TrendingCard(
                                           imageUrl:
                                               e.urlToImage ??
-                                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
-                                          tag: "Trending no 1",
-                                          time: e.publishedAt ?? "No Date",
-                                          title: e.title ?? "No Title",
-                                          author: e.author ?? "Unknown",
+                                                  StringConstants.placeholderImage,
+                                          time: e.publishedAt ?? StringConstants.datePlaceholder,
+                                          title: e.title ?? StringConstants.titlePlaceholder,
+                                          author: e.author ?? StringConstants.authorPlaceholder,
                                           onTap: () {
                                             Get.to(
                                               () =>
@@ -189,7 +188,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Tesla News",
+                            StringConstants.teslaNews,
                             style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           InkWell(
@@ -197,7 +196,7 @@ class _HomePageState extends State<HomePage> {
                               Get.to(() => SeeAllNews(num: 3));
                             },
                             child: Text(
-                              "See All",
+                              StringConstants.seeAll,
                               style: Theme.of(context).textTheme.labelSmall,
                             ),
                           ),
@@ -218,10 +217,10 @@ class _HomePageState extends State<HomePage> {
                                       (e) => NewsTile(
                                         imgUrl:
                                             e.urlToImage ??
-                                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopP6o3MgMccuVFiFAIMizweHtlyG6Ju6y6g&s",
-                                        author: e.author ?? "Unknown",
-                                        title: e.title ?? "No Title",
-                                        time: e.publishedAt ?? "No Date",
+                                                StringConstants.placeholderImage,
+                                        author: e.author ?? StringConstants.authorPlaceholder,
+                                        title: e.title ?? StringConstants.titlePlaceholder,
+                                        time: e.publishedAt ?? StringConstants.datePlaceholder,
                                         onTap: () {
                                           Get.to(
                                             () => NewsDetailsPage(newsModel: e),

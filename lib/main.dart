@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_app/Config/theme.dart';
+import 'package:news_app/Constants/string_constants.dart';
 import 'package:news_app/home_page_controller.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_storage/get_storage.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'News App',
+      title: StringConstants.appName,
       theme: lightTheme,
       themeMode: ThemeMode.system,
       darkTheme: darkTheme,

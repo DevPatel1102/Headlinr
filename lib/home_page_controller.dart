@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:news_app/Components/navigation_bar.dart';
+import 'package:news_app/Constants/string_constants.dart';
 import 'package:news_app/Controllers/bottom_navigation_controller.dart';
 import 'package:get/get.dart';
 import 'package:news_app/Pages/Dashboard/dashboard_drawer.dart';
@@ -55,7 +56,7 @@ class _HomePageControllerState extends State<HomePageController> {
                         Expanded(
                           child: Text(
                             textAlign: TextAlign.center,
-                            "Headlinr",
+                            StringConstants.appName,
                             style: Theme.of(context).textTheme.headlineLarge,
                           ),
                         ),

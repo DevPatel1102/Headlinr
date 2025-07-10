@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:news_app/Constants/string_constants.dart';
 import '../../../Controllers/news_controller.dart';
 
 class SearchBarWidget extends StatelessWidget {
@@ -21,7 +22,7 @@ class SearchBarWidget extends StatelessWidget {
           Expanded(child: TextField(
               controller: searchController,
               decoration: InputDecoration(
-                  hintText: "Search News ...",
+                  hintText: StringConstants.searchBarHint,
                   fillColor: Theme.of(context).colorScheme.primaryContainer,
                   border: InputBorder.none
               )

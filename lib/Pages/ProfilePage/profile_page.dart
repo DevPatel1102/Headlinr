@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:news_app/Constants/string_constants.dart';
 import 'package:news_app/Pages/ProfileSettingsPage/profile_settings_page.dart';
 
 import '../../Controllers/profile_controller.dart';
@@ -18,7 +19,7 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Profile",
+          StringConstants.profile,
           style: theme.textTheme.headlineMedium,
         ),
       ),
@@ -88,7 +89,7 @@ class ProfilePage extends StatelessWidget {
           // Edit Profile (Placeholder)
           ListTile(
             leading: const Icon(Icons.edit),
-            title: Text("Edit Profile", style: theme.textTheme.bodyLarge),
+            title: Text(StringConstants.editProfile, style: theme.textTheme.bodyLarge),
             trailing: const Icon(Icons.arrow_forward_ios, size: 16),
             onTap: () {
               Get.to(() => const EditProfilePage());
@@ -98,7 +99,7 @@ class ProfilePage extends StatelessWidget {
           // Settings Navigation
           ListTile(
             leading: const Icon(Icons.settings),
-            title: Text("Settings", style: theme.textTheme.bodyLarge),
+            title: Text(StringConstants.settings, style: theme.textTheme.bodyLarge),
             trailing: const Icon(Icons.arrow_forward_ios, size: 16),
             onTap: () => Get.to(() => ProfileSettingsPage()),
           ),
@@ -134,7 +135,7 @@ class ProfilePage extends StatelessWidget {
           // App version info
           Center(
             child: Text(
-              "Headlinr • v1.0.0",
+              StringConstants.appNameWithVersion,
               style: theme.textTheme.labelSmall,
             ),
           ),
