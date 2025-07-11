@@ -3,6 +3,12 @@
 _Transforming News Delivery with Seamless Innovation_
 
 <div align="center">
+  <h4>
+    <a href="https://github.com/DevPatel1102/Headlinr/releases/download/Headlinr(v1.0.0)/Headlinr.apk" target="_blank">
+      <img src="https://img.shields.io/badge/Download-APK-blue?style=for-the-badge&logo=android&logoColor=white" alt="Download APK" />
+    </a>
+  </h4>
+
   <img alt="last-commit" src="https://img.shields.io/github/last-commit/DevPatel1102/Headlinr?style=flat&logo=git&logoColor=white&color=0080ff" />
   <img alt="repo-top-language" src="https://img.shields.io/github/languages/top/DevPatel1102/Headlinr?style=flat&color=0080ff" />
   <img alt="repo-language-count" src="https://img.shields.io/github/languages/count/DevPatel1102/Headlinr?style=flat&color=0080ff" />
