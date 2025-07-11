@@ -23,8 +23,6 @@ _Transforming News Delivery with Seamless Innovation_
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-  - [Usage](#usage)
-  - [Testing](#testing)
 
 ---
 
