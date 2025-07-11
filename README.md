@@ -53,7 +53,7 @@ This project streamlines the development of scalable news apps by providing a we
 
 This project requires the following dependencies:
 
-- **Programming Language:** Dart
+- **Programming Language:** Flutter
 - **Package Managers:** Pub, CMake, Gradle
 
 ---
