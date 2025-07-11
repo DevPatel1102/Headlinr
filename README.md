@@ -30,7 +30,7 @@ _Transforming News Delivery with Seamless Innovation_
 
 ## 🧠 Overview
 
-**Headlinr** is an open-source Flutter framework crafted for building dynamic, multi-platform news applications with ease. It offers a robust architecture that supports web, desktop, and mobile platforms, ensuring a consistent user experience across devices.
+**Headlinr** is an open-source Flutter app crafted for building dynamic, multi-platform news applications with ease. It offers a robust architecture that supports web, desktop, and mobile platforms, ensuring a consistent user experience across devices.
 
 ### 🚀 Why Headlinr?
 
