@@ -11,8 +11,6 @@ _Transforming News Delivery with Seamless Innovation_
 ### Built with:
 
 ![JSON](https://img.shields.io/badge/JSON-000000.svg?style=flat&logo=JSON&logoColor=white)
-![Markdown](https://img.shields.io/badge/Markdown-000000.svg?style=flat&logo=Markdown&logoColor=white)
-![Swift](https://img.shields.io/badge/Swift-F05138.svg?style=flat&logo=Swift&logoColor=white)
 ![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=flat&logo=Gradle&logoColor=white)
 ![Dart](https://img.shields.io/badge/Dart-0175C2.svg?style=flat&logo=Dart&logoColor=white)
 ![C++](https://img.shields.io/badge/C++-00599C.svg?style=flat&logo=C%2B%2B&logoColor=white)
