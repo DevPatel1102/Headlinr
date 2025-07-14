@@ -29,8 +29,8 @@ class SearchBarWidget extends StatelessWidget {
           )),
           Obx(() => newsController.isSearchNewsLoading.value
               ? Container(
-            width: 50,
-            height: 50,
+            width: 40,
+            height: 40,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -45,13 +45,13 @@ class SearchBarWidget extends StatelessWidget {
               newsController.searchNews(searchController.text);
             },
             child: Container(
-              width: 50,
-              height: 50,
+              width: 40,
+              height: 40,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Theme.of(context).colorScheme.primary,
               ),
-              child: const Icon(Icons.search),
+              child: const Icon(Icons.search,color: Colors.white,),
             ),
           )),
         ],

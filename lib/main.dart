@@ -6,6 +6,8 @@ import 'package:news_app/home_page_controller.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_storage/get_storage.dart';
 
+import 'Pages/SplashScreen/splash_screen.dart';
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       themeMode: ThemeMode.system,
       darkTheme: darkTheme,
-      home: HomePageController(),
+      home: const SplashScreen(),
     );
   }
 }
