@@ -41,7 +41,7 @@ class ProfilePage extends StatelessWidget {
                         backgroundColor: theme.colorScheme.primary,
                         backgroundImage: imagePath.isNotEmpty ? FileImage(File(imagePath)) : null,
                         child: imagePath.isEmpty
-                            ? Icon(Icons.person, size: 50, color: theme.colorScheme.onPrimaryContainer)
+                            ? Icon(Icons.person, size: 50, color: Colors.white)
                             : null,
                       ),
                       Positioned(

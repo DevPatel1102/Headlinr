@@ -36,7 +36,7 @@ class DashboardDrawer extends StatelessWidget {
                     backgroundColor: Theme.of(context).colorScheme.primary,
                     backgroundImage: imagePath.isNotEmpty ? FileImage(File(imagePath)) : null,
                     child: imagePath.isEmpty
-                        ? Icon(Icons.person, size: 50, color: Theme.of(context).colorScheme.onPrimaryContainer)
+                        ? Icon(Icons.person, size: 50, color: Colors.white)
                         : null,
                   ),
                   const SizedBox(height: 10),

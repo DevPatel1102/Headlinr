@@ -5,7 +5,7 @@ class StringConstants {
   static const String appVersion = '1.0.0';
   static const String datePlaceholder = 'No Date';
   static const String titlePlaceholder = 'No Title';
-  static const String descriptionPlaceholder = 'No Title';
+  static const String descriptionPlaceholder = 'No Description';
   static const String authorPlaceholder = 'Unknown';
   static const String defaultUserName = 'Guest';
   static const String defaultUserEmail = 'guest@gmail.com';
