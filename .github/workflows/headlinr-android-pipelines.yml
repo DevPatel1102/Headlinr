@@ -1,0 +1,71 @@
+name: headlinr-android-build
+
+on:
+  workflow_dispatch:
+    inputs:
+      ENV:
+        description: 'Environment'
+        required: true
+        default: 'Dev'
+        type: choice
+        options:
+          - Dev
+          - Prod
+      APP_VERSION_NAME:
+        description: 'App version name'
+        required: true
+      APP_VERSION_CODE:
+        description: 'App version code'
+        required: true
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    env:
+      ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+      ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+      ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+      ANDROID_KEYSTORE_FILE: my-release-key.keystore
+      ENV: ${{ github.event.inputs.ENV }}
+      APP_VERSION_NAME: ${{ github.event.inputs.APP_VERSION_NAME }}
+      APP_VERSION_CODE: ${{ github.event.inputs.APP_VERSION_CODE }}
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Decode keystore from secret
+      run: |
+        echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > android/app/my-release-key.keystore
+
+    - name: Set versionCode and versionName
+      run: |
+        GRADLE_FILE=android/app/build.gradle
+        sed -i '' -E "s/versionName \".*\"/versionName \"$APP_VERSION_NAME\"/" $GRADLE_FILE
+        sed -i '' -E "s/versionCode [0-9]+/versionCode $APP_VERSION_CODE/" $GRADLE_FILE
+        grep 'versionName\|versionCode' $GRADLE_FILE
+
+    - name: Make gradlew executable
+      run: chmod +x android/gradlew
+
+    - name: Build signed APK
+      run: |
+        cd android
+        ./gradlew assembleRelease \
+          -Pandroid.injected.signing.store.file=$(pwd)/app/$ANDROID_KEYSTORE_FILE \
+          -Pandroid.injected.signing.store.password=$ANDROID_KEYSTORE_PASSWORD \
+          -Pandroid.injected.signing.key.alias=$ANDROID_KEY_ALIAS \
+          -Pandroid.injected.signing.key.password=$ANDROID_KEY_PASSWORD
+
+    - name: Rename APK file
+      run: |
+        mv android/app/build/outputs/apk/release/app-release.apk \
+           "android/app/build/outputs/apk/release/${APP_VERSION_NAME}(${APP_VERSION_CODE}).apk"
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: android-apk
+        path: android/app/build/outputs/apk/release/${{ env.APP_VERSION_NAME }}(${{ env.APP_VERSION_CODE }}).apk
+        
