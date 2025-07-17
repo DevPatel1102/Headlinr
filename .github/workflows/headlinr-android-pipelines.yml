@@ -45,11 +45,14 @@ jobs:
         sed -i '' -E "s/versionName \".*\"/versionName \"$APP_VERSION_NAME\"/" $GRADLE_FILE
         sed -i '' -E "s/versionCode [0-9]+/versionCode $APP_VERSION_CODE/" $GRADLE_FILE
         grep 'versionName\|versionCode' $GRADLE_FILE
-
+        
     - name: Create local.properties for Android and Flutter
       run: |
         echo "sdk.dir=$ANDROID_HOME" > android/local.properties
         echo "flutter.sdk=$FLUTTER_HOME" >> android/local.properties
+        echo "flutter.buildMode=release" >> android/local.properties
+        echo "flutter.versionName=1.0.0" >> android/local.properties
+        echo "flutter.versionCode=1" >> android/local.properties
     
     - name: Make gradlew executable
       run: chmod +x android/gradlew
