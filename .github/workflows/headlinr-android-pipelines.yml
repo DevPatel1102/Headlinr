@@ -40,6 +40,12 @@ jobs:
       with:
         flutter-version: '3.32.5'
         
+    - name: Print FLUTTER_HOME
+      run: echo "FLUTTER_HOME is $FLUTTER_HOME"
+
+    - name: List flutter_tools/gradle directory
+      run: ls $FLUTTER_HOME/packages/flutter_tools/gradle
+      
     - name: Decode keystore from secret
       run: |
         echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > android/app/my-release-key.keystore
