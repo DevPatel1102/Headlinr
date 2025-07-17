@@ -40,11 +40,8 @@ jobs:
       with:
         flutter-version: '3.32.5'
         
-    - name: Print FLUTTER_ROOT
-      run: echo "FLUTTER_ROOT is $FLUTTER_ROOT"
-
-    - name: List flutter_tools/gradle directory
-      run: ls $FLUTTER_ROOT/packages/flutter_tools/gradle
+    - name: Install dependencies
+      run: flutter pub get
       
     - name: Decode keystore from secret
       run: |
