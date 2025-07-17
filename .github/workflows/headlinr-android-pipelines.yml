@@ -76,9 +76,15 @@ jobs:
           -Pandroid.injected.signing.store.password=$ANDROID_KEYSTORE_PASSWORD \
           -Pandroid.injected.signing.key.alias=$ANDROID_KEY_ALIAS \
           -Pandroid.injected.signing.key.password=$ANDROID_KEY_PASSWORD
-          
-    - name: List APK output directory
-      run: ls -l android/app/build/outputs/apk/release
+
+    - name: List all under app
+      run: find android/app
+      
+    - name: List all build
+      run: find android/app/build
+      
+    - name: List all build outputs
+      run: find android/app/build/outputs
       
     - name: Rename APK file
       run: |
