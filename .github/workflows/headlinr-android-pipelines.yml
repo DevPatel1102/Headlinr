@@ -79,7 +79,7 @@ jobs:
       
     - name: Rename APK file
       run: |
-        mv build/app//outputs/apk/release/app-release.apk \
+        mv build/app/outputs/apk/release/app-release.apk \
            "build/app/outputs/apk/release/${APP_VERSION_NAME}(${APP_VERSION_CODE}).apk"
 
     - name: Upload APK
