@@ -81,13 +81,10 @@ jobs:
       run: |
         mv build/app/outputs/apk/release/app-release.apk \
            "build/app/outputs/apk/release/${APP_VERSION_NAME}(${APP_VERSION_CODE}).apk"
-
-    - name: List all build outputs
-      run: find build/app/outputs/apk/release
     
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: android-apk
-        path: build/app/outputs/apk/release/${APP_VERSION_NAME}(${APP_VERSION_CODE}).apk
+        path: build/app/outputs/apk/release/${{ github.event.inputs.APP_VERSION_NAME }}(${{ github.event.inputs.APP_VERSION_CODE }}).apk
         
