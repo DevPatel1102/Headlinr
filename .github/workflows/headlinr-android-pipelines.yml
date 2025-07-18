@@ -86,5 +86,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: android-apk
-        path: android/app/build/outputs/apk/release/${{ env.APP_VERSION_NAME }}(${{ env.APP_VERSION_CODE }}).apk
+        path: build/app/outputs/apk/release/${APP_VERSION_NAME}(${APP_VERSION_CODE}).apk
         
